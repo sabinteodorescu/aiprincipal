@@ -1,10 +1,33 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react'
+import { useAuth } from '../hooks/AuthProvider'
 import './styles/auth.css'
 
 function Auth() {
+  const [signupData, setSignupData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
+
+  const [signinData, setSigninData] = useState({
+    email: '',
+    password: ''
+  })
+  
+  const { signup } = useAuth()
+
+  const handleSignupChange = async (e) => {
+    setSignupData({
+      ...signupData,
+      [e.target.name]: [e.target.value]
+    })
+  }
+  
   const handleSignup = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+
+    console.log(signupData)
+    signup(signupData)
   }
 
   const handleSignin = async (e) => {
@@ -24,9 +47,9 @@ function Auth() {
               <a href="#" className="icon"><i className="fa-brands fa-apple"></i></a>
             </div>
             <span>or use your email for registeration</span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="text" placeholder="Name" name="name" onChange={handleSignupChange} value={signupData.name} />
+            <input type="email" placeholder="Email" name="email" onChange={handleSignupChange} value={signupData.email} />
+            <input type="password" placeholder="Password" name="password" onChange={handleSignupChange} value={signupData.password} />
             <input type="submit" value="Sign up" />
           </form>
         </div>

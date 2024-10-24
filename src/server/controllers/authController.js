@@ -16,7 +16,6 @@ exports.signup = async (req, res) => {
     })
 
     if (!existingUser) {
-      try {
         const hash = bcrypt.hash(password, saltRounds)
 
         const newUser = await User.create({
@@ -31,6 +30,8 @@ exports.signup = async (req, res) => {
           email: email
         }, process.env.JWT_SECRET_KEY, { expiresIn: '24h' })
 
+        console.log(newUser, token)
+
         return res.status(200).json({
           data: {
             user: {
@@ -41,9 +42,10 @@ exports.signup = async (req, res) => {
             token: token
           }
         })
-      } catch (err) {
-        return res.status(500).json({ message: err })
+      } else {
+        return res.status(400).json({ message: "User already exists!" })
       }
-    }
+    } catch (err) {
+    return res.status(500).json({ message: err })
   }
 }
