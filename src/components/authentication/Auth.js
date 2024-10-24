@@ -1,10 +1,37 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react'
+import { useAuth } from '../../hooks/AuthProvider'
 import '../styles/auth.css'
 
 function Auth() {
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [signupData, setSignupData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
+
+  const [signinData, setSigninData] = useState({
+    email: '',
+    password: ''
+  })
+  
+  const { signup } = useAuth()
+
+  const handleSignupChange = async (e) => {
+    setSignupData({
+      ...signupData,
+      [e.target.name]: [e.target.value]
+    })
+  }
+  
+  const handleSignup = async (e) => {
+    e.preventDefault()
+
+    console.log(signupData)
+    signup(signupData)
+  }
+
+  const handleSignin = async (e) => {
+    e.preventDefault()
   }
 
   return (
@@ -12,7 +39,7 @@ function Auth() {
       <div className="auth-symbol"></div>
       <div className="auth-container" id="container">
         <div className="auth-form-container sign-up">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSignup}>
             <h1>Create Account</h1>
             <div className="auth-social-icons">
               <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
@@ -20,14 +47,14 @@ function Auth() {
               <a href="#" className="icon"><i className="fa-brands fa-apple"></i></a>
             </div>
             <span>or use your email for registeration</span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="text" placeholder="Name" name="name" onChange={handleSignupChange} value={signupData.name} />
+            <input type="email" placeholder="Email" name="email" onChange={handleSignupChange} value={signupData.email} />
+            <input type="password" placeholder="Password" name="password" onChange={handleSignupChange} value={signupData.password} />
             <input type="submit" value="Sign up" />
           </form>
         </div>
         <div className="auth-form-container sign-in">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSignin}>
             <h1>Sign In</h1>
             <div className="auth-social-icons">
               <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
