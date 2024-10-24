@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './styles/auth.css'
+import '../styles/auth.css'
 
 function Auth() {
   const handleSubmit = async (e) => {

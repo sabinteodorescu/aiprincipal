@@ -7,7 +7,7 @@ function Footer() {
       <span className="blur"></span>
       <div className="column">
         <div className="logo">
-          <img src={require("../images/logo 2.png")} />
+          <img src={require("../../images/logo 2.png")} />
         </div>
         <p>
           Be the best in your class with Principal AI!

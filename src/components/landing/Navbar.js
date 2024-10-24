@@ -5,7 +5,7 @@ function Navbar() {
     <nav>
       <div className="nav-logo">
         <a href="#">
-          <img src={require("../images/logo 2.png")} />
+          <img src={require("../../images/logo 2.png")} />
         </a>
       </div>
 
