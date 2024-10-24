@@ -3,8 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './styles/auth.css'
 
 function Auth() {
-  const handleSubmit = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
+  }
+
+  const handleSignin = async (e) => {
+    e.preventDefault()
   }
 
   return (
@@ -12,7 +16,7 @@ function Auth() {
       <div className="auth-symbol"></div>
       <div className="auth-container" id="container">
         <div className="auth-form-container sign-up">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSignup}>
             <h1>Create Account</h1>
             <div className="auth-social-icons">
               <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
@@ -27,7 +31,7 @@ function Auth() {
           </form>
         </div>
         <div className="auth-form-container sign-in">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSignin}>
             <h1>Sign In</h1>
             <div className="auth-social-icons">
               <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
