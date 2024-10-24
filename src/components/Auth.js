@@ -14,12 +14,19 @@ function Auth() {
     password: ''
   })
   
-  const { signup } = useAuth()
+  const { signup, signin } = useAuth()
 
   const handleSignupChange = async (e) => {
     setSignupData({
       ...signupData,
-      [e.target.name]: [e.target.value]
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSigninChange = async (e) => {
+    setSigninData({
+      ...signinData,
+      [e.target.name]: e.target.value
     })
   }
   
@@ -27,11 +34,14 @@ function Auth() {
     e.preventDefault()
 
     console.log(signupData)
-    signup(signupData)
+    await signup(signupData)
   }
 
   const handleSignin = async (e) => {
     e.preventDefault()
+
+    console.log(signinData)
+    await signin(signinData)
   }
 
   return (
@@ -62,8 +72,8 @@ function Auth() {
               <a href="#" className="icon"><i className="fa-brands fa-apple"></i></a>
             </div>
             <span>or use your email password</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="email" placeholder="Email" name="email" onChange={handleSigninChange} value={signinData.email} />
+            <input type="password" placeholder="Password" name="password" onChange={handleSigninChange} value={signinData.password} />
             <a href="#">Forget Your Password?</a>
             <input type="submit" value="Sign in" />
           </form>
@@ -73,12 +83,12 @@ function Auth() {
             <div className="auth-toggle-panel toggle-left">
               <h1>Welcome Back!</h1>
               <p>Enter your personal details to use all of site features</p>
-              <input type="submit" className="auth-hidden" id="login" value="Sign in" />
+              <button className="auth-hidden" id="login" value="Sign in" />
             </div>
             <div className="auth-toggle-panel toggle-right">
               <h1>Hello, Friend!</h1>
               <p>Register with your personal details to use all of site features</p>
-              <input type="submit" className="auth-hidden" id="register" value="Sign up" />
+              <button className="auth-hidden" id="register" value="Sign up" />
             </div>
           </div>
         </div>
