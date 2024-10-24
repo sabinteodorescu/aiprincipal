@@ -11,10 +11,10 @@ function InsiderNavbar() {
       </div>
 
       <ul className="nav-links">
-        <li className="link"><a href="#">####</a></li>
-        <li id="link1" className="link"><a href="#">####</a></li>
-        <li id="link2" className="link"><a href="#">####</a></li>
-        <Link to="/logout" className="link">Logout</Link>
+        <li className="link"><Link to="#">####</Link></li>
+        <li className="link"><Link to="#">####</Link></li>
+        <li className="link"><Link to="#">####</Link></li>
+        <li className="link"><Link to="/logout">Logout</Link></li>
       </ul>
     </nav>
   )

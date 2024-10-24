@@ -109,21 +109,23 @@
   transition: all 0.6s ease-in-out;
 }
 
-.auth-sign-in{
+.sign-in{
   left: 0;
   width: 50%;
   z-index: 2;
 }
 
-.auth-container.auth-active .auth-sign-in{
+.auth-container.auth-active .sign-in{
   transform: translateX(100%);
 }
 
 .sign-up{
-  left: 0;
   width: 50%;
-  opacity: 0;
   z-index: 1;
+}
+
+.op0{
+  opacity: 0;
 }
 
 .auth-container.auth-active .sign-up{
@@ -208,19 +210,19 @@
   transition: all 0.6s ease-in-out;
 }
 
-.auth-toggle-left{
+.toggle-sign-in{
   transform: translateX(-200%);
 }
 
-.auth-container.auth-active .auth-toggle-left{
+.auth-container.auth-active .toggle-sign-in{
   transform: translateX(0);
 }
 
-.auth-toggle-right{
+.toggle-sign-up{
   right: 0;
   transform: translateX(0);
 }
 
-.auth-container.auth-active .auth-toggle-right{
+.auth-container.auth-active .toggle-sign-up{
   transform: translateX(200%);
 }
