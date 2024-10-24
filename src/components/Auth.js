@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAuth } from '../hooks/AuthProvider'
+import { useAuth } from "../hooks/AuthProvider";
 import "./styles/auth.css";
 import {
   faGoogle,
@@ -9,41 +9,36 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 function Auth() {
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-function Auth() {
   const [signupData, setSignupData] = useState({
-    name: '',
-    email: '',
-    password: ''
-  })
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const [signinData, setSigninData] = useState({
-    email: '',
-    password: ''
-  })
-  
-  const { signup } = useAuth()
+    email: "",
+    password: "",
+  });
+
+  const { signup } = useAuth();
 
   const handleSignupChange = async (e) => {
     setSignupData({
       ...signupData,
-      [e.target.name]: [e.target.value]
-    })
-  }
-  
-  const handleSignup = async (e) => {
-    e.preventDefault()
+      [e.target.name]: [e.target.value],
+    });
+  };
 
-    console.log(signupData)
-    signup(signupData)
-  }
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    console.log(signupData);
+    signup(signupData);
+  };
 
   const handleSignin = async (e) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   return (
     <div className={`auth-body ${isSignUp ? "sign-up-active" : ""}`}>
@@ -64,9 +59,27 @@ function Auth() {
               </a>
             </div>
             <span>or use your email for registeration</span>
-            <input type="text" placeholder="Name" name="name" onChange={handleSignupChange} value={signupData.name} />
-            <input type="email" placeholder="Email" name="email" onChange={handleSignupChange} value={signupData.email} />
-            <input type="password" placeholder="Password" name="password" onChange={handleSignupChange} value={signupData.password} />
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              onChange={handleSignupChange}
+              value={signupData.name}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              onChange={handleSignupChange}
+              value={signupData.email}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleSignupChange}
+              value={signupData.password}
+            />
             <input type="submit" value="Sign up" />
           </form>
         </div>
@@ -74,9 +87,15 @@ function Auth() {
           <form onSubmit={handleSignin}>
             <h1>Sign In</h1>
             <div className="auth-social-icons">
-              <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-              <a href="#" className="icon"><i className="fa-brands fa-apple"></i></a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-google-plus-g"></i>
+              </a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-facebook-f"></i>
+              </a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-apple"></i>
+              </a>
             </div>
             <span>or use your email password</span>
             <input type="email" placeholder="Email" />
