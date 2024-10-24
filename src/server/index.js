@@ -6,6 +6,8 @@ const cors = require('cors')
 require('dotenv').config()
 const PORT = 5000
 
+const authRoutes = require('./routes/authRoutes')
+
 const whitelist = ['http://localhost:3000']
 const corsOptions = {
   credentials: true,
@@ -26,6 +28,8 @@ mongoose.connect(process.env.MONGODB_URI)
 app.get('/', (req, res) => {
   res.send('WORKS')
 })
+
+app.use('/auth', authRoutes)
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}.`)

@@ -20,28 +20,61 @@ function AuthProvider({ children }) {
       })
         .then(async (response) => {
           const res = await response.json()
-          if (res.data) {
+          if (response.ok) {
             setUser(res.data.user)
-            setToken(res.token)
-            localStorage.setItem('token', res.token)
+            setToken(res.data.token)
+            localStorage.setItem('token', res.data.token)
             return
+          } else {
+            throw new Error(res.message)
           }
-          throw new Error(res.message)
         })
     } catch (err) {
       console.error(err)
     }
   }
+
+  const signin = async (data) => {
+    try {
+      await fetch('http://localhost:5000/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        credentials: 'include'
+      })
+        .then(async (response) => {
+          const res = await response.json()
+          if (response.ok) {
+            setUser(res.data.user)
+            setToken(res.data.token)
+            localStorage.setItem('token', res.data.token)
+          } else {
+            throw new Error(res.message)
+          }
+        })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const logout = useCallback(async () => {
+    setUser(null)
+    setToken(null)
+    localStorage.removeItem('token')
+  }, [])
   
   return (
-    <AuthContext.Provider value={{ user, loggedIn, signup }}>
+    <AuthContext.Provider value={{ user, loggedIn, signup, signin, logout }}>
       { children }
     </AuthContext.Provider>
   )
 }
-
+ 
 export default AuthProvider
 
 export const useAuth = () => {
   return useContext(AuthContext)
 }
+  

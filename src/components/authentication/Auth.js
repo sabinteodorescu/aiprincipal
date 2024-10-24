@@ -13,13 +13,22 @@ function Auth() {
     email: '',
     password: ''
   })
+
+  const [isSignUp, setIsSignUp] = useState(false)
   
-  const { signup } = useAuth()
+  const { signup, signin } = useAuth()
 
   const handleSignupChange = async (e) => {
     setSignupData({
       ...signupData,
-      [e.target.name]: [e.target.value]
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSigninChange = async (e) => {
+    setSigninData({
+      ...signinData,
+      [e.target.name]: e.target.value
     })
   }
   
@@ -27,18 +36,25 @@ function Auth() {
     e.preventDefault()
 
     console.log(signupData)
-    signup(signupData)
+    await signup(signupData)
   }
 
   const handleSignin = async (e) => {
     e.preventDefault()
+
+    console.log(signinData)
+    await signin(signinData)
+  }
+
+  const toggleAuthContainer = () => {
+    setIsSignUp((prev) => !prev)
   }
 
   return (
     <div className="auth-body" id="auth">
       <div className="auth-symbol"></div>
-      <div className="auth-container" id="container">
-        <div className="auth-form-container sign-up">
+      <div className={`auth-container ${isSignUp ? 'auth-active' : ''}`} id="container">
+        <div className={`auth-form-container sign-up ${isSignUp ? '' : 'op0'}`}>
           <form onSubmit={handleSignup}>
             <h1>Create Account</h1>
             <div className="auth-social-icons">
@@ -53,7 +69,7 @@ function Auth() {
             <input type="submit" value="Sign up" />
           </form>
         </div>
-        <div className="auth-form-container sign-in">
+        <div className={`auth-form-container sign-in ${isSignUp ? 'op0' : ''}`}>
           <form onSubmit={handleSignin}>
             <h1>Sign In</h1>
             <div className="auth-social-icons">
@@ -62,23 +78,23 @@ function Auth() {
               <a href="#" className="icon"><i className="fa-brands fa-apple"></i></a>
             </div>
             <span>or use your email password</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="email" placeholder="Email" name="email" onChange={handleSigninChange} value={signinData.email} />
+            <input type="password" placeholder="Password" name="password" onChange={handleSigninChange} value={signinData.password} />
             <a href="#">Forget Your Password?</a>
             <input type="submit" value="Sign in" />
           </form>
         </div>
         <div className="auth-toggle-container">
           <div className="auth-toggle">
-            <div className="auth-toggle-panel toggle-left">
+            <div className="auth-toggle-panel toggle-sign-in">
               <h1>Welcome Back!</h1>
               <p>Enter your personal details to use all of site features</p>
-              <input type="submit" className="auth-hidden" id="login" value="Sign in" />
+              <button onClick={toggleAuthContainer} className="auth-hidden" id="login">Sign in</button>
             </div>
-            <div className="auth-toggle-panel toggle-right">
+            <div className="auth-toggle-panel toggle-sign-up">
               <h1>Hello, Friend!</h1>
               <p>Register with your personal details to use all of site features</p>
-              <input type="submit" className="auth-hidden" id="register" value="Sign up" />
+              <button onClick={toggleAuthContainer} className="auth-hidden" id="register">Sign up</button>
             </div>
           </div>
         </div>
