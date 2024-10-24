@@ -29,6 +29,16 @@ body{
     overflow-x: hidden;
     overflow-y: scroll;
 }
+.auth-body {
+    background-color: #18181B;
+    /* background: linear-gradient(45deg, #18181B , #50505a); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
 
 nav{
     max-width: 1300px;
@@ -171,7 +181,7 @@ section .header{
 .features{
     margin-top: 4rem;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
 
@@ -198,14 +208,15 @@ section .header{
     border-radius: 5px;
 }
 
-.features .card h4{
+.features .card h2{
     margin-bottom: 0.5rem;
-    color: #fff;
-    font-size: 1.2rem;
+    color: #ffffff;
+    font-size: 3rem;
     font-weight: 600;
 }
 
 .features .card p{
+    font-size: 2rem;
     color: #ccc;
     margin-bottom: 1rem;
 }

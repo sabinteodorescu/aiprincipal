@@ -35,7 +35,7 @@ function Auth() {
   }
 
   return (
-    <div className="auth-body">
+    <div className="auth-body" id="auth">
       <div className="auth-symbol"></div>
       <div className="auth-container" id="container">
         <div className="auth-form-container sign-up">

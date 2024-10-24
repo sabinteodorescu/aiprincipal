@@ -7,19 +7,21 @@ function About() {
         <div className="features">
           <div className="card">
             <span><i className="ri-questionnaire-fill"></i></span>
-            <h4>Graded Quiz</h4>
+            <h2>Efficiency</h2>
             <p>
-              Find out what and how much you know on the subject with our standardized graded quizzez
+              Our platform is built with efficiency in mind. Our approach ensures that the training your newcommers 
+              receive is tailored to their learning style in order to maximise the  effectiveness of the training.
+
             </p>
-            <a href="#">Take a quiz! <i className="ri-arrow-right-line"></i></a>
+            {/* <a href="#">BUTTON<i className="ri-arrow-right-line"></i></a> */}
           </div>
           <div className="card">
             <span><i className="ri-phone-find-fill"></i></span>
-            <h4>Find the best courses</h4>
+            <h2></h2>
             <p>
-              Find out which of our courses fit you best by telling our AI-Principal your intrests
+              
             </p>
-            <a href="#">To the Principal's Office! <i className="ri-arrow-right-line"></i></a>
+            {/* <a href="#">BUTTON<i className="ri-arrow-right-line"></i></a> */}
           </div>
         </div>
     </section>
