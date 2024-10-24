@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAuth } from '../hooks/AuthProvider'
 import "./styles/auth.css";
 import {
   faGoogle,
@@ -12,28 +13,45 @@ function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form submitted"); // Debug log
-    if (isSignUp) {
-      console.log("Signing up with", email, password); // Add logic for sign-up
-    } else {
-      console.log("Signing in with", email, password); // Add logic for sign-in
-    }
-  };
+function Auth() {
+  const [signupData, setSignupData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
+
+  const [signinData, setSigninData] = useState({
+    email: '',
+    password: ''
+  })
+  
+  const { signup } = useAuth()
+
+  const handleSignupChange = async (e) => {
+    setSignupData({
+      ...signupData,
+      [e.target.name]: [e.target.value]
+    })
+  }
+  
+  const handleSignup = async (e) => {
+    e.preventDefault()
+
+    console.log(signupData)
+    signup(signupData)
+  }
+
+  const handleSignin = async (e) => {
+    e.preventDefault()
+  }
 
   return (
     <div className={`auth-body ${isSignUp ? "sign-up-active" : ""}`}>
       <div className="auth-symbol"></div>
-      <div
-        className={`auth-container ${isSignUp ? "auth-active" : ""}`}
-        id="container"
-      >
-        <div
-          className={`auth-form-container ${isSignUp ? "sign-up" : "sign-in"}`}
-        >
-          <form onSubmit={handleSubmit}>
-            <h1>{isSignUp ? "Create Account" : "Sign In"}</h1>
+      <div className="auth-container" id="container">
+        <div className="auth-form-container sign-up">
+          <form onSubmit={handleSignup}>
+            <h1>Create Account</h1>
             <div className="auth-social-icons">
               <a href="#" className="icon">
                 <FontAwesomeIcon icon={faGoogle} />
@@ -45,34 +63,26 @@ function Auth() {
                 <FontAwesomeIcon icon={faApple} />
               </a>
             </div>
-            <span>
-              {isSignUp
-                ? "or use your email for registration"
-                : "or use your email for login"}
-            </span>
-            {isSignUp && <input type="text" placeholder="Name" required />}
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            {isSignUp ? (
-              <input className="auth-btn" type="submit" value="Sign up" />
-            ) : (
-              <>
-                <a href="#">Forget Your Password?</a>
-                <input className="auth-btn" type="submit" value="Sign in" />
-              </>
-            )}
+            <span>or use your email for registeration</span>
+            <input type="text" placeholder="Name" name="name" onChange={handleSignupChange} value={signupData.name} />
+            <input type="email" placeholder="Email" name="email" onChange={handleSignupChange} value={signupData.email} />
+            <input type="password" placeholder="Password" name="password" onChange={handleSignupChange} value={signupData.password} />
+            <input type="submit" value="Sign up" />
+          </form>
+        </div>
+        <div className="auth-form-container sign-in">
+          <form onSubmit={handleSignin}>
+            <h1>Sign In</h1>
+            <div className="auth-social-icons">
+              <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
+              <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
+              <a href="#" className="icon"><i className="fa-brands fa-apple"></i></a>
+            </div>
+            <span>or use your email password</span>
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <a href="#">Forget Your Password?</a>
+            <input type="submit" value="Sign in" />
           </form>
         </div>
         <div className="auth-toggle-container">
