@@ -58,8 +58,15 @@ function AuthProvider({ children }) {
       console.error(err)
     }
   }
+
+  const logout = useCallback(async () => {
+    setUser(null)
+    setToken(null)
+    localStorage.removeItem('token')
+  }, [])
+  
   return (
-    <AuthContext.Provider value={{ user, loggedIn, signup, signin }}>
+    <AuthContext.Provider value={{ user, loggedIn, signup, signin, logout }}>
       { children }
     </AuthContext.Provider>
   )

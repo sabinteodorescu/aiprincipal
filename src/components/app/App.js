@@ -6,6 +6,7 @@ import AuthProvider from '../../hooks/AuthProvider'
 import InsiderHome from '../userLanding/InsiderHome'
 import AuthRedirect from '../../router/AuthRedirect'
 import AuthRoute from '../../router/AuthRoute'
+import Logout from '../authentication/Logout'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           </Route>
           <Route element={<AuthRoute />} >
             <Route element={<InsiderHome />} path='/insHome' />
+            <Route element={<Logout />} path='/logout' />
           </Route>
         </Routes>
       </Router>
