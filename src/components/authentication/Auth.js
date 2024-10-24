@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useAuth } from '../hooks/AuthProvider'
-import './styles/auth.css'
+import { useAuth } from '../../hooks/AuthProvider'
+import '../styles/auth.css'
 
 function Auth() {
   const [signupData, setSignupData] = useState({

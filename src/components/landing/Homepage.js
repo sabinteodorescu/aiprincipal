@@ -1,10 +1,10 @@
 import React from 'react'
 import Header from './Header'
-import Navbar from './Navbar'
+import Navbar from '../landing/Navbar'
 import About from './About'
-import Plans from './Plans'
+import Plans from '../landing/Plans'
 import Footer from './Footer'
-import './styles/homepage.css'
+import '../styles/homepage.css'
 
 function Homepage() {
   return (
