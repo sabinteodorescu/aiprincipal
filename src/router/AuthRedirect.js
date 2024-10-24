@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 function AuthRedirect() {
     //TODO - remove and implement a localStorage based  solution
-    const loggedIn = true
+    const loggedIn = false
 
     if (loggedIn === null) {
         return 'loading'

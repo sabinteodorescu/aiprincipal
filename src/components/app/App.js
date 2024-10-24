@@ -2,23 +2,26 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Homepage from '../landing/Homepage'
 import Auth from '../authentication/Auth'
+import AuthProvider from '../../hooks/AuthProvider'
 import InsiderHome from '../userLanding/InsiderHome'
 import AuthRedirect from '../../router/AuthRedirect'
 import AuthRoute from '../../router/AuthRoute'
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route element={<AuthRedirect />} >
-          <Route element={<Homepage />} path='/' />
-          <Route element={<Auth />} path='/authentication' />
-        </Route>
-        <Route element={<AuthRoute />} >
-          <Route element={<InsiderHome />} path='/insHome' />
-        </Route>
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route element={<AuthRedirect />} >
+            <Route element={<Homepage />} path='/' />
+            <Route element={<Auth />} path='/authentication' />
+          </Route>
+          <Route element={<AuthRoute />} >
+            <Route element={<InsiderHome />} path='/insHome' />
+          </Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   )
 }
 

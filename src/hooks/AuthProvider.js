@@ -20,13 +20,14 @@ function AuthProvider({ children }) {
       })
         .then(async (response) => {
           const res = await response.json()
-          if (res.data) {
+          if (response.ok) {
             setUser(res.data.user)
             setToken(res.data.token)
             localStorage.setItem('token', res.data.token)
             return
+          } else {
+            throw new Error(res.message)
           }
-          throw new Error(res.message)
         })
     } catch (err) {
       console.error(err)
@@ -45,13 +46,13 @@ function AuthProvider({ children }) {
       })
         .then(async (response) => {
           const res = await response.json()
-          if (res.data) {
-            console.log(res.data)
+          if (response.ok) {
             setUser(res.data.user)
             setToken(res.data.token)
             localStorage.setItem('token', res.data.token)
+          } else {
+            throw new Error(res.message)
           }
-          throw new Error(res.message)
         })
     } catch (err) {
       console.error(err)
