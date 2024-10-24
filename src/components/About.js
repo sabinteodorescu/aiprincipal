@@ -21,23 +21,6 @@ function About() {
             </p>
             <a href="#">To the Principal's Office! <i className="ri-arrow-right-line"></i></a>
           </div>
-
-          <div className="card">
-            <span><i className="ri-history-line"></i></span>
-            <h4>On Time Videos</h4>
-            <p>
-              We have video each 4 days, So check channel every 4 days to watch it!
-            </p>
-            <a href="#">Join Now <i className="ri-arrow-right-line"></i></a>
-          </div>
-          <div className="card">
-            <span><i className="ri-shake-hands-line"></i></span>
-            <h4>Cooperation</h4>
-            <p>
-              You want to work together? Write email to us, we will read it.
-            </p>
-            <a href="#">Join Now <i className="ri-arrow-right-line"></i></a>
-          </div>
         </div>
     </section>
   )
